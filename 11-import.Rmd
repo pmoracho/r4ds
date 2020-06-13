@@ -89,7 +89,7 @@ Si has utilizado R anteriormente, tal vez te preguntas por qué no usamos `read.
 
 * Producen tibbles, no convierten los vectores de caracteres a factores, no usan nombres de filas ni distorsionan los nombres de columnas. Estas son fuentes comunes de frustración al utilizar las funciones de R base.
 
-* Son más reprobase heredan ciertos comportamientos de tu sistema operativo y de las variables del ambiente, de modo que importar código que funciona bien en tu computadora puede no funcionar en la de otros. 
+* Son más reproducibles. Las funciones R base heredan ciertos comportamientos de tu sistema operativo y de las variables del ambiente, de modo que importar código que funciona bien en tu computadora puede no necesariamente funcionar en la de otros. 
 
 ### Ejercicios
 
@@ -451,13 +451,13 @@ tail(desafio)
 
 Cada función `parse_*()` tiene su correspondiente función `col_*()`. Se utiliza `parse_*()` cuando los datos se encuentran en un vector de caracteres que ya está disponible en R; `col_*` para cuando quieres decirle a **readr** cómo cargar los datos.
 
-Te recomendamos proporcionar la estructura para `col_types` a partir de la impresión en consola provista por **readr**. Esto asegura que tienes un script para importar datos consistente y reproducible. Si confías en las deducciones por defecto y tus datos cambian, **readr** continuará leyéndolos. Si quieres ser realmente estricto/a, emplea `stop_for_problems()` (_detenerse en problemas_): esto devolverá un mensaje de error y detendrá tu script si hay cualquier problema con la segmentación.
+Te recomendamos proporcionar la estructura para `col_types` a partir de la impresión en consola provista por **readr**. Esto asegura que tienes un script para importar datos de manera consistente y reproducible. Si confías en las deducciones por defecto y tus datos cambian, **readr** continuará leyéndolos. Si quieres ser realmente estricto/a, emplea `stop_for_problems()` (_detenerse en problemas_): esto devolverá un mensaje de error y detendrá tu script si hay cualquier problema con la segmentación.
 
 ### Otras estrategias
 
 Existen algunas estrategias generales más para ayudarte a segmentar archivos:
 
-*   En el ejemplo previo simplemente tuvimos mala suerta: si miramos solo una fila más que el número por defecto, podemos segmentar correctamente en un solo intento:
+*   En el ejemplo previo simplemente tuvimos mala suerte: si miramos solo una fila más que el número por defecto, podemos segmentar correctamente en un solo intento:
    
     ```{r}
     desafio2 <- read_csv(readr_example("challenge.csv"), guess_max = 1001)
@@ -515,7 +515,7 @@ read_csv("desafio-2.csv")
 
 Esto hace a los CSV poco confiables para almacenar en caché los resultados provisorios --- necesitas recrear la especificación de las columnas cada vez que los cargas. Hay dos alternativas:
 
-1.  `write_rds()` and `read_rds()` son funciones "envoltorio" (_wrappers_) uniformes sobre las funciones base `readRDS()` y `saveRDS()`. Estas almacenan datos en un formato binario propio de R llamado RDS:
+1.  `write_rds()` y `read_rds()` son funciones "envoltorio" (_wrappers_) uniformes sobre las funciones base `readRDS()` y `saveRDS()`. Estas almacenan datos en un formato binario propio de R llamado RDS:
 
     ```{r}
     write_rds(desafio, "desafio.rds")
