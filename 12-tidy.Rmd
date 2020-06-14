@@ -204,16 +204,16 @@ Como te habrás dado cuenta a partir de los argumentos comunes `key` y `value`, 
 
  (Sugerencia: observa los tipos de variables y piensa en los nombres de las columnas)
 
-    Tanto `spread()` como `gather()` tienen el argumento `convert` (convertir). ¿Qué   hace dicho argumento?
+  Tanto `spread()` como `gather()` tienen el argumento `convert` (convertir). ¿Qué   hace dicho argumento?
 
-1. ¿Por qué falla el siguiente código?
+2. ¿Por qué falla el siguiente código?
 
   ```{r, error = TRUE}
   tabla4a %>%
     gather(`1999`, `2000`, key = "anio", value = "casos")
   ```
 
-1. ¿Por qué no se puede extender la siguiente tabla? ¿Cómo agregarías una nueva columna para resolver el problema?
+3. ¿Por qué no se puede extender la siguiente tabla? ¿Cómo agregarías una nueva columna para resolver el problema?
 
   ```{r}
   personas <- tribble(
@@ -269,7 +269,7 @@ tabla3 %>%
 
 (Formalmente, `sep` es una expresión regular y aprenderás más sobre esto en el capítulo sobre [cadenas de caracteres].)
 
-Mira atentamente los tipos de columna: notarás que `casos` y `poblacion` son columnas de tipo carácter. Este es el comportamiento por defecto en `separate()`: preserva el tipo de columna. Aquí, sin embargo, no es muy útil, ya que se trata de números. Podemos pedir a separate() que intente convertir a un tipo más adecuado usando `convert = TRUE`:
+Mira atentamente los tipos de columna: notarás que `casos` y `poblacion` son columnas de tipo carácter. Este es el comportamiento por defecto en `separate()`: preserva el tipo de columna. Aquí, sin embargo, no es muy útil, ya que se trata de números. Podemos pedir a `separate()` que intente convertir a un tipo más adecuado usando `convert = TRUE`:
 
 ```{r}
 
@@ -411,9 +411,9 @@ Existe abundante información epidemiológica en este dataset, pero es complicad
 oms
 ```
 
-Este es un ejemplo muy típico de un dataset de la vida real. Contiene columnas redundantes, códigos extraños de variables y muchos valores faltantes. En breve, `oms` está desordenado y necesitamos varios pasos para ordenarlo. Al igual que **dplyr**, **tidyr** está diseñado de modo tal que cada función hace bien una cosa. Esto significa que en una situación real deberás encadenar múltiples verbos.
+Este es un ejemplo muy típico de un dataset de la vida real. Contiene columnas redundantes, códigos extraños de variables y muchos valores faltantes. Resumiendo, `oms` está desordenado y necesitamos varios pasos para ordenarlo. Al igual que **dplyr**, **tidyr** está diseñado de modo tal que cada función hace bien una cosa. Esto significa que en una situación real deberás encadenar múltiples verbos.
 
-LCasi siempre, la mejor forma de comenzar es reunir las columnas que no representan variables. Miremos lo que hay:
+Casi siempre, la mejor forma de comenzar es reunir las columnas que no representan variables. Miremos lo que hay:
 
 * Pareciera ser que `pais`, `iso2` e `iso3` son variables redundantes que se refieren al país.
 
@@ -452,7 +452,7 @@ Podrías resolver esto por tu cuenta pensando y experimentando un poco, pero afo
 
 3. La letra que aparece después del último `_` se refiere al sexo de los pacientes. El conjunto de datos agrupa en hombres (`h`) y mujeres (`m`).
 
-4. Los números finales se refieren al grupo etareo que se ha organizado en siete categorías:
+4. Los números finales se refieren al grupo etario que se ha organizado en siete categorías:
 
  * `014` = 0 -- 14 años de edad
  * `1524` = 15 -- 24 años de edad
